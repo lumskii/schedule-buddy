@@ -1,34 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import { PlayIcon, PauseIcon, SkipForwardIcon, WifiIcon, BatteryIcon, WatchIcon } from 'lucide-react'
+import React, { useEffect, useState } from "react";
+import {
+  Play,
+  Pause,
+  SkipForward,
+  Wifi,
+  Battery,
+  Watch,
+} from "lucide-react";
 
 export function WearOSMockup() {
-  const [timeRemaining, setTimeRemaining] = useState(765) // 12:45 in seconds
-  const [totalTime] = useState(1800) // 30 minutes total
-  const [isRunning, setIsRunning] = useState(true)
-  const [currentActivity] = useState('Morning Workout')
-  const [batteryLevel] = useState(85)
+  const [timeRemaining, setTimeRemaining] = useState(765); // 12:45 in seconds
+  const [totalTime] = useState(1800); // 30 minutes total
+  const [isRunning, setIsRunning] = useState(true);
+  const [currentActivity] = useState("Morning Workout");
+  const [batteryLevel] = useState(85);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null
+    let interval: NodeJS.Timeout | null = null;
     if (isRunning && timeRemaining > 0) {
       interval = setInterval(() => {
-        setTimeRemaining((time) => time - 1)
-      }, 1000)
+        setTimeRemaining((time) => time - 1);
+      }, 1000);
     }
     return () => {
-      if (interval) clearInterval(interval)
-    }
-  }, [isRunning, timeRemaining])
+      if (interval) clearInterval(interval);
+    };
+  }, [isRunning, timeRemaining]);
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, '0')}`
-  }
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
-  const progress = ((totalTime - timeRemaining) / totalTime) * 100
-  const circumference = 2 * Math.PI * 85 // radius of 85
-  const strokeDashoffset = circumference - (progress / 100) * circumference
+  const progress = ((totalTime - timeRemaining) / totalTime) * 100;
+  const circumference = 2 * Math.PI * 85; // radius of 85
+  const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -51,11 +58,11 @@ export function WearOSMockup() {
               {/* Status Bar */}
               <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-between px-6 text-white text-xs">
                 <div className="flex items-center space-x-2">
-                  <WifiIcon className="w-3 h-3" />
+                  <Wifi className="w-3 h-3" />
                   <span>4G</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <BatteryIcon className="w-3 h-3" />
+                  <Battery className="w-3 h-3" />
                   <span>{batteryLevel}%</span>
                 </div>
               </div>
@@ -87,7 +94,7 @@ export function WearOSMockup() {
                   strokeDashoffset={strokeDashoffset}
                   className="transition-all duration-1000 ease-linear"
                   style={{
-                    filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))',
+                    filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))",
                   }}
                 />
               </svg>
@@ -107,20 +114,20 @@ export function WearOSMockup() {
                     className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
                   >
                     {isRunning ? (
-                      <PauseIcon className="w-5 h-5 text-white" />
+                      <Pause className="w-5 h-5 text-white z-10" />
                     ) : (
-                      <PlayIcon className="w-5 h-5 text-white ml-0.5" />
+                      <Play className="w-5 h-5 text-white ml-0.5 z-10" />
                     )}
                   </button>
                   <button className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
-                    <SkipForwardIcon className="w-4 h-4 text-white" />
+                    <SkipForward className="w-4 h-4 text-white" />
                   </button>
                 </div>
               </div>
 
               {/* Status Indicators */}
               <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-                <WatchIcon className="w-3 h-3 text-green-400" />
+                <Watch className="w-3 h-3 text-green-400" />
                 <div className="text-xs text-green-400">SYNC</div>
               </div>
               <div className="absolute bottom-4 right-4 text-xs text-white opacity-60">
@@ -213,5 +220,5 @@ export function WearOSMockup() {
         </p>
       </div>
     </div>
-  )
-} 
+  );
+}
