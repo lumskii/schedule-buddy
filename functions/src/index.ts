@@ -17,3 +17,9 @@ import * as logger from "firebase-functions/logger";
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+// Basic health check function
+export const healthCheck = onRequest((req, res) => {
+  logger.info("Health check requested");
+  res.status(200).send("OK");
+});

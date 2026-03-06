@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
 import { collection, doc, setDoc, getDocs, deleteDoc, FirestoreError } from 'firebase/firestore';
 import { db } from '../firebase';
 import { format } from 'date-fns';
@@ -13,7 +12,7 @@ export type Activity = {
 
 const todayId = () => format(new Date(), 'yyyyMMdd');
 
-export function useSchedule(uid: string, options?: UseQueryOptions<Activity[], FirestoreError>) {
+export function useSchedule(uid: string) {
   return useQuery<Activity[], FirestoreError>({
     queryKey: ['schedule', uid],
     queryFn: async () => {
@@ -63,7 +62,7 @@ export function useUpsertActivity(uid: string) {
   });
 }
 
-export function useDeleteActivity(uid: string, options?: UseMutationOptions<void, FirestoreError, string>) {
+export function useDeleteActivity(uid: string) {
   const qc = useQueryClient();
   return useMutation<void, FirestoreError, string>({
     mutationFn: async (id: string) => {

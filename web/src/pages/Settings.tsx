@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   CalendarIcon,
   SmartphoneIcon,
   BellIcon,
   UserIcon,
-  LinkIcon,
 } from 'lucide-react'
 
 export function Settings() {
   const [googleCalendarConnected, setGoogleCalendarConnected] = useState(false)
-  const [wearOSConnected, setWearOSConnected] = useState(true)
+  const [wearOSConnected] = useState(true)
 
   return (
     <div className="max-w-4xl mx-auto">

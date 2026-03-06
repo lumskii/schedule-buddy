@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import {
   PlayIcon,
-  PauseIcon,
   ClockIcon,
   CalendarIcon,
   PlusIcon,

@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy:preview": "npm run build && firebase hosting:channel:deploy dev --only hosting",
+    "deploy:prod": "npm run build && firebase deploy --only hosting",
+    "deploy": "npm run deploy:prod",
     "lint": "eslint .",
     "preview": "vite preview"
   },

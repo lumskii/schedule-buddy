@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { PlusIcon, ClockIcon, EditIcon, TrashIcon } from 'lucide-react'
 
 interface Activity {
